@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fábrica — Digital templates for freelancers</title>
+<meta name="description" content="Digital templates, planners and spreadsheets for freelancers and small businesses. Contracts, proposals, client onboarding and finance tools — instant download.">
+<style>
+  :root{
+    --paper:#f6f4ee;
+    --ink:#191813;
+    --muted:#6f6b60;
+    --line:#dcd8cc;
+    --stamp:#c8500a;   /* crate-stamp orange */
+    --ok:#2c6e49;
+    --mono:ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font:16px/1.6 var(--mono);
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--stamp);color:var(--paper)}
+  a{color:inherit}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* ---------- top bar ---------- */
+  header{
+    border-bottom:2px solid var(--ink);
+    background:var(--paper);
+  }
+  .bar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 0;gap:16px;flex-wrap:wrap;
+  }
+  .brand{
+    font-weight:700;letter-spacing:.22em;font-size:15px;
+    display:flex;align-items:center;gap:10px;text-decoration:none;
+  }
+  .brand .mark{
+    display:inline-grid;place-items:center;
+    width:28px;height:28px;border:2px solid var(--ink);
+    color:var(--stamp);font-size:14px;transform:rotate(-4deg);
+  }
+  nav a{
+    text-decoration:none;font-size:13px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);
+    border-bottom:2px solid transparent;padding-bottom:2px;margin-left:18px;
+  }
+  nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--stamp);outline:none}
+
+  /* ---------- hero: spec-sheet ---------- */
+  .hero{padding:72px 0 56px;position:relative}
+  .eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--stamp);
+    border:1.5px solid var(--stamp);padding:4px 10px;
+    transform:rotate(-1.5deg);margin-bottom:26px;
+  }
+  h1{
+    font-size:clamp(30px,5.4vw,52px);
+    line-height:1.12;font-weight:700;letter-spacing:-.01em;
+    max-width:15ch;
+  }
+  h1 em{font-style:normal;color:var(--stamp)}
+  .lede{margin:22px 0 34px;max-width:52ch;color:var(--muted)}
+  .cta{
+    display:inline-block;background:var(--ink);color:var(--paper);
+    text-decoration:none;padding:14px 26px;font-weight:700;
+    letter-spacing:.06em;font-size:15px;border:2px solid var(--ink);
+    transition:background .15s,color .15s;
+  }
+  .cta:hover,.cta:focus-visible{background:var(--stamp);border-color:var(--stamp);outline:none}
+  .cta small{display:block;font-weight:400;font-size:11px;letter-spacing:.12em;opacity:.75;margin-top:2px}
+
+  /* stamped seal, the signature */
+  .seal{
+    position:absolute;right:0;top:64px;
+    width:150px;height:150px;border:3px double var(--stamp);
+    border-radius:50%;display:grid;place-items:center;text-align:center;
+    color:var(--stamp);transform:rotate(9deg);
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;line-height:1.5;
+    opacity:.85;user-select:none;
+  }
+  .seal b{font-size:22px;letter-spacing:.06em;display:block}
+  @media(max-width:760px){.seal{display:none}}
+
+  /* ---------- catalog rows ---------- */
+  .catalog{border-top:2px solid var(--ink);padding:56px 0}
+  .cat-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:28px;gap:12px;flex-wrap:wrap;
+  }
+  h2{font-size:14px;letter-spacing:.24em;text-transform:uppercase}
+  .cat-head span{font-size:12px;color:var(--muted);letter-spacing:.08em}
+  .row{
+    display:grid;grid-template-columns:64px 1fr auto;gap:18px;
+    align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);
+  }
+  .row:first-of-type{border-top:1px solid var(--line)}
+  .sku{font-size:12px;color:var(--stamp);letter-spacing:.1em}
+  .row h3{font-size:16px;font-weight:700;margin-bottom:4px}
+  .row p{font-size:14px;color:var(--muted);max-width:56ch}
+  .tag{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid var(--line);padding:3px 9px;color:var(--muted);white-space:nowrap;
+  }
+  .tag.live{border-color:var(--ok);color:var(--ok)}
+  @media(max-width:560px){
+    .row{grid-template-columns:1fr;gap:6px}
+    .tag{justify-self:start}
+  }
+
+  /* ---------- principles strip ---------- */
+  .strip{
+    border-top:2px solid var(--ink);
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .strip div{
+    padding:26px 22px;border-right:1px solid var(--line);
+    font-size:13.5px;color:var(--muted);
+  }
+  .strip div:last-child{border-right:0}
+  .strip b{
+    display:block;color:var(--ink);font-size:13px;
+    letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;
+  }
+  @media(max-width:680px){
+    .strip{grid-template-columns:1fr}
+    .strip div{border-right:0;border-bottom:1px solid var(--line)}
+    .strip div:last-child{border-bottom:0}
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:2px solid var(--ink);padding:30px 0 44px;
+    font-size:13px;color:var(--muted);
+  }
+  .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--muted)}
+  footer a:hover{color:var(--stamp)}
+  .stampline{color:var(--stamp);letter-spacing:.2em;text-transform:uppercase;font-size:11px}
+
+  @media(prefers-reduced-motion:no-preference){
+    .hero>*{animation:up .5s ease both}
+    .hero>*:nth-child(2){animation-delay:.06s}
+    .hero>*:nth-child(3){animation-delay:.12s}
+    .hero>*:nth-child(4){animation-delay:.18s}
+    @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/"><span class="mark">F</span>FÁBRICA</a>
+    <nav>
+      <a href="#catalog">Catalog</a>
+      <a href="https://www.etsy.com/shop/SUALOJA">Etsy shop</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <span class="eyebrow">Digital goods · Instant download</span>
+    <h1>Templates that do the <em>boring half</em> of freelancing for you.</h1>
+    <p class="lede">Contracts, proposals, client onboarding kits, pricing calculators and
+      finance spreadsheets — built by a freelancer, for freelancers and small
+      businesses. Download, fill in, get back to the real work.</p>
+    <a class="cta" href="https://www.etsy.com/shop/SUALOJA">Browse the shop on Etsy
+      <small>Ships instantly · nothing physical, ever</small></a>
+    <div class="seal" aria-hidden="true">est. 2026<b>FÁBRICA</b>quality checked</div>
+  </section>
+
+  <section class="catalog wrap" id="catalog">
+    <div class="cat-head">
+      <h2>Production lines</h2>
+      <span>New items added weekly</span>
+    </div>
+
+    <div class="row">
+      <span class="sku">FT-01</span>
+      <div>
+        <h3>Freelancer business kit</h3>
+        <p>Contract and proposal templates, client onboarding documents and
+           invoice layouts — the paperwork of a service business, pre-built.</p>
+      </div>
+      <span class="tag live">In production</span>
+    </div>
+
+    <div class="row">
+      <span class="sku">FT-02</span>
+      <div>
+        <h3>Finance spreadsheets</h3>
+        <p>Pricing calculators, budget planners and money trackers for life's
+           big line items — from your rates to your wedding.</p>
+      </div>
+      <span class="tag live">In production</span>
+    </div>
+
+    <div class="row">
+      <span class="sku">FT-03</span>
+      <div>
+        <h3>Notion systems</h3>
+        <p>Dashboards and CRMs for solo businesses: track clients, projects
+           and payments in one place, without building it yourself.</p>
+      </div>
+      <span class="tag">Coming soon</span>
+    </div>
+  </section>
+
+  <section class="strip wrap" aria-label="How we work">
+    <div><b>Made once, made well</b>Every template starts from a master design
+      and gets reviewed by a human before it ships. No filler pages.</div>
+    <div><b>Instant delivery</b>Digital files only — PDF, spreadsheet or Notion
+      link in your inbox the moment you buy.</div>
+    <div><b>Built by the customer</b>Designed by a working freelancer who got
+      tired of writing the same proposal from scratch. Twice.</div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <span class="stampline">Fábrica · fabricatemplates.com</span><br>
+      Digital templates for freelancers and small businesses.
+    </div>
+    <div>
+      <a href="https://www.etsy.com/shop/SUALOJA">Etsy shop</a> ·
+      <a href="/privacy">Privacy policy</a> ·
+      <a href="mailto:paulovictor55296@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
